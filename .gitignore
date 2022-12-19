@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# I really don't know what these are for
+*.pdb
+*.ilk
+
+# Microsoft Office temporary files
+*~$*
