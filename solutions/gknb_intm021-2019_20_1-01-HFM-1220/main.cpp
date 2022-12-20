@@ -5,6 +5,11 @@ int main()
 {
     std::vector<std::vector<char>> t;
     srand((unsigned int)time(NULL));
+    char toc[3][2] = {
+        {'a','a'},
+        {'b','b'},
+        {'c','c'}
+    };
 
     // Initializing the <vector> table of characters:
     for(int i=0; i < 2; i++)
@@ -12,11 +17,10 @@ int main()
         std::vector<char> row;
         for(int j = 0; j < 3; j++)
         {
-            int randomCharCounter[3] = {3,3,3};
+            int randomCharCounter[3] = {0,0,0};
             char randomChar = 'a' + rand()%3;
 
             
-
             row.push_back(randomChar);
         }
         t.push_back(row);
