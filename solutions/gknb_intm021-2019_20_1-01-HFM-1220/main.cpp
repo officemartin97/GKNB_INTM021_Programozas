@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+/* Teszt a github miatt. */
+
 int main()
 {
     std::vector<std::vector<char>> t;
