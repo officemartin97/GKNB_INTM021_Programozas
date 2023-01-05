@@ -1,51 +1,25 @@
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <algorithm>
 
 /* Teszt a github miatt. */
 /*Second test. */
 
 int main()
 {
-    std::vector<std::vector<char>> t;
-    srand((unsigned int)time(NULL));
-    char toc[3][2] = {
-        {'a','a'},
-        {'b','b'},
-        {'c','c'}
+    /*pick a random element from array and paste it, then remove it from the source array
+    or
+    initialize a set of characters in array then swpa them and spice things up by repositioning the elements randomly*/
+    std::srand(std::time(0));
+    char myArray[] = {
+        'a','a','b','b','c','c'
     };
 
-    // Initializing the <vector> table of characters:
-    for(int i=0; i < 2; i++)
-    {
-        std::vector<char> row;
-        for(int j = 0; j < 3; j++)
-        {
-            int randomCharCounter[3] = {0,0,0};
-            char randomChar = 'a' + rand()%3;
+    char myArray2 = std::random_shuffle(myArray, myArray+1);
 
-            
-            row.push_back(randomChar);
-        }
-        t.push_back(row);
+    for (auto& element : myArray){
+        std::cout << myArray;
     }
-
-    // Print out the <vector> table of characters:
-    for(const auto &row : t)
-    {
-        for(const auto &c : row)
-        {
-            std::cout << c <<' ';
-        }
-        std::cout << std::endl;
-    }
-
-
-
-    /*int a;
-    int b;
-    std::cout << "Memoriajatek"<< std::endl << "____________" << std::endl;
-    std::cout << "Sor: ";
-    std::cin >> a;
-    std::cout << "Oszlop: ";
-    std::cin >> b;*/
+    return 0;
 }
