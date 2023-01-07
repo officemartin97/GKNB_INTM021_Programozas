@@ -8,18 +8,82 @@
 
 int main()
 {
-    /*pick a random element from array and paste it, then remove it from the source array
-    or
-    initialize a set of characters in array then swpa them and spice things up by repositioning the elements randomly*/
-    std::srand(std::time(0));
-    char myArray[] = {
+    std::srand(unsigned(time(0)));
+    std::vector<std::vector<char>> myvector;
+    std::vector<char> basevector = {
         'a','a','b','b','c','c'
     };
+    std::vector<std::vector<char>> temp = {
+        {'*','*','*'},
+        {'*','*','*'}
+    };
 
-    char myArray2 = std::random_shuffle(myArray, myArray+1);
+    random_shuffle(basevector.begin(), basevector.end());
 
-    for (auto& element : myArray){
-        std::cout << myArray;
+    int idx = 0;
+    for(int i = 0; i < 2; i++) {
+        std::vector<char> row;
+        for (int j = 0; j < 3; j++ ) {
+            row.push_back(basevector[idx]);
+            idx++;
+        };
+        myvector.push_back(row);
+    };
+
+    bool eog;
+    char prev = ' ';
+    int previdx[2];
+    int counter;
+    while(temp != myvector){
+        for (auto row : temp){
+            for (auto column : row){
+                std::cout << column << ", ";
+            }
+            std::cout << std::endl;
+        }
+        
+        int sor;
+        int oszl;
+        std::cout << "Megforditando kartya sora: ";
+        std:: cin >> sor;
+        std::cout << "Megforditando kartya oszlopa: ";
+        std::cin >> oszl;
+
+        temp[sor-1][oszl-1] = myvector[sor-1][oszl-1];
+        if (prev == ' '){
+            prev = myvector[sor-1][oszl-1];
+            previdx[0] = sor-1;
+            previdx[1] = oszl-1;
+            std::cout << prev << std::endl;
+        }
+        else{
+            if(prev == myvector[sor-1][oszl-1]) {
+                for (auto row : temp){
+                    for (auto column : row){
+                        std::cout << column << ", ";
+                    }
+                    std::cout << std::endl;
+                }
+                std::cout << "Grat faszi!" << std::endl;
+                prev = ' ';
+            }
+            else {
+                for (auto row : temp){
+                    for (auto column : row){
+                        std::cout << column << ", ";
+                    }
+                    std::cout << std::endl;
+                }
+                std::cout << "Ez most nem jott ossze faszi :(" << std:: endl;
+                prev = ' ';
+                temp[previdx[0]][previdx[1]] = '*';
+                temp[sor-1][oszl-1] = '*';
+
+            }
+        }
+        counter++;
     }
+    std::cout << "Gratulalok, " << counter << " lepesbol sikeresen befejezted a jatekot! :)";
+    
     return 0;
 }
