@@ -13,14 +13,8 @@ int main()
     {
         std::cin >> akt;
 
-        if (akt > max)
-        {
-            max = akt;
-        }
-        else if (akt < min)
-        {
-            min = akt;
-        }
+        akt > max ? max = akt : max = max;
+        akt < min ? min = akt : min = min;
         
     }
     std::cout << std::endl;
