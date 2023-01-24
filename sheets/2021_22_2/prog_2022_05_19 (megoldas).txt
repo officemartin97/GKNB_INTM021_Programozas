@@ -1,0 +1,329 @@
+#include<iostream> 
+#include <climits>
+
+#define MAX 10
+
+using namespace std;
+
+int beker(int be_tb[], int *min, int *max)
+{
+   int i=0, szum=0;
+   do {
+       cin >> be_tb[i];
+       if(i==0) { if(be_tb[i]==0) i++; }
+       else if(i%2==1)
+        { if(be_tb[i]%2==1 or be_tb[i]%2==-1)
+          { szum+=be_tb[i];
+            if(be_tb[i]<(*min)) (*min)=be_tb[i];
+            i++; } }
+       else if(i%2==0)
+        { if(be_tb[i]%2==0 and be_tb[i]!=0)
+          { szum+=be_tb[i];
+            if(be_tb[i]>(*max)) (*max)=be_tb[i];
+            i++; } }
+      } while (i<MAX);
+  return szum;
+}
+
+void kiir(int szum, int min, int max)
+{
+	cout << "Szum: " << szum << "\nPrtln min: " << min
+       << "\nPrs max: " << max << endl; 
+}
+
+int main() {
+	int tb[MAX]={0},min=INT_MAX,max=INT_MIN;
+	int szum=beker(tb,&min,&max);
+	kiir(szum,min,max);
+  return 0;
+}
+
+/*
+0 1 2 3 4 5 6 7 8 9
+
+Kimenet:
+Szum: 45
+Prtln min: 1
+Prs max: 8
+
+2 0 1 2 2 3 -3 -4 5 6 7 8 -9
+
+Kimenet:
+Szum: 19
+Prtln min: -9
+Prs max: 8
+
+*/
+ /***********************************/
+#include<iostream> 
+#include <cstring>
+
+#define MAX 50
+
+using namespace std;
+
+int feltolt(char s_tb[])
+ {
+  int i, h;
+  for(i=0; i<MAX; i++) { s_tb[i]='\x0'; }
+  i=0;
+  do {
+      s_tb[i]=cin.get(); i++;
+      } while(s_tb[i-1]!='\n' and i<MAX);
+  return h=strlen(s_tb);
+ }
+ 
+void torol(char s_tb[], int h)
+{
+  int i, j;
+  for(i=h-1; i>0; i--)
+    { if(i%2==0) {
+       for(j=i; j<h+1; j++)
+         { s_tb[j-1]=s_tb[j]; } h--; } }
+   cout << s_tb << endl;
+}
+
+int main()
+ {
+  char s_tb[MAX];
+  int n=feltolt(s_tb);
+  torol(s_tb,n);
+  return 0;
+ }
+ 
+ /*
+alma korte szilva
+
+Kimenet:
+am ot zla
+
+Ez is egy teszt sor!
+
+Kimenet:
+E seytstsr
+
+*/
+
+ /***********************************/
+/* Chip.txt tartalma:
+10
+kj-123pu 1100 4100 2100 121
+zt-321hj 1200 4200 2200 122
+tf-341tg 1300 4300 2300 123
+do-565yy 1900 4900 2900 129
+kt-942uu 1400 4400 2400 124
+df-572ki 1500 4500 2500 125
+gh-961ta 1600 4600 2600 126
+nz-789zu 1000 4000 2000 120
+le-888lc 1700 4700 2700 127
+sj-735cx 1800 4800 2800 128
+
+Kimenet:
+nz-789zu => 1:58:40 [h:m:s]
+do-565yy
+
+*/
+/****/
+#include<iostream>
+#include<fstream> 
+
+#define ORA 3600
+#define PRC 60
+
+using namespace std;
+
+struct triathlete {
+  string lic;
+  int swim;
+  int cycle;
+  int run;
+  int depo;
+  int sum;
+};
+
+void buborek(struct triathlete tb[], int lt)
+{
+  string cs; 
+   for(int v=lt-1; v>=1; v--) {
+      for(int e=0, csere; e<v; e++) {
+         if(tb[e].sum>tb[e+1].sum)
+           { csere=tb[e].sum; tb[e].sum=tb[e+1].sum; tb[e+1].sum=csere;
+             cs=tb[e].lic; tb[e].lic=tb[e+1].lic; tb[e+1].lic=cs; } } } 
+}
+
+string tri_result(string fbe)
+{
+  ifstream fg(fbe);
+  string lc="N/A!";
+  if(fg.is_open()) {
+   int vk;
+   fg >> vk;
+   struct triathlete* tri=new struct triathlete[vk];  
+   for(int i=0; i<vk; i++) {
+    fg >> tri[i].lic >> tri[i].swim >> tri[i].cycle >> tri[i].run >> tri[i].depo;
+    tri[i].sum=tri[i].swim+tri[i].cycle+tri[i].run+tri[i].depo; }
+   fg.close();
+   buborek(tri,vk);
+   cout << tri[0].lic << " => " << tri[0].sum/ORA << ":" << tri[0].sum%ORA/PRC << ":" << tri[0].sum%ORA%PRC << " [h:m:s]" << endl;
+   lc=tri[vk-1].lic;
+   delete [] tri; tri=0; 
+   }
+  else { cout << "Sikertelen file-nyitás!" << endl; }
+  return lc;
+}
+
+int main(void) {
+   string f_be="Chip.txt";
+   cout << tri_result(f_be) << endl;
+   return 0;
+}
+/***********************************/
+/* Tri.txt tartalma:
+140 230 40
+140 230 30
+50 60 40
+50 60 30
+75 95 50
+75 95 60
+110 150 30
+110 150 40
+120 120 45
+120 120 90
+
+Kimenet:
+2729.03
+3085.22
+4125
+5303
+5091.17
+7200
+4588.9
+
+*/
+/****/
+#include<iostream>
+#include<fstream>
+#include<cmath> 
+
+#define MAX 10
+#define AH 2000
+#define FH 8000
+
+using namespace std;
+
+double feltolt(string fbe)
+{
+  ifstream fg(fbe);
+  double szk=0;
+  int j=0;
+  if(fg.is_open()) {
+   int* b1=new int[MAX];
+   int* b2=new int[MAX];
+   int* szg=new int[MAX];
+   double* ter=new double[MAX];
+   for(int i=0; i<MAX; i++) {
+   fg >> b1[i] >> b2[i] >> szg[i];
+   ter[i]=(b1[i]*b2[i]*sin(szg[i]*M_PI/180))/2;
+   if(ter[i]>=AH and ter[i]<=FH) {
+     cout << ter[i] << endl; szk+=ter[i]; j++; } }
+   fg.close();
+   delete [] b1; b1=0;
+   delete [] b2; b2=0;
+   delete [] szg; szg=0;
+   delete [] ter; ter=0;
+   }
+  else { cerr << "Sikertelen file-nyitás!\n" << endl; return -1.; }
+  return szk/j;
+}
+
+int main(void) {
+   string f_be="Tri.txt";
+   cout <<feltolt(f_be) << endl;
+   return 0;
+}
+
+/***********************************/
+/* Writers.txt tartalma:
+8
+Douglas Noel Adams
+Isaac Asimov
+Robert Anson Heinlein
+Arthur Charles Clarke
+Ray Douglas Bradbury
+Stephen Edwin King
+John Ronald Reuel Tolkien
+Timothy Zahn
+
+Kimenet a képernyőn:
+Adams, Douglas Noel
+Asimov, Isaac
+Heinlein, Robert Anson
+Clarke, Arthur Charles
+Bradbury, Ray Douglas
+King, Stephen Edwin
+Tolkien, John Ronald Reuel
+Zahn, Timothy
+Hibátlan futás!
+
+Kimenet a file-ban:
+Adams, Douglas Noel
+Asimov, Isaac
+Heinlein, Robert Anson
+Clarke, Arthur Charles
+Bradbury, Ray Douglas
+King, Stephen Edwin
+Tolkien, John Ronald Reuel
+Zahn, Timothy
+
+*/
+/*****/
+#include<iostream>
+#include<fstream>
+#include<cstring>
+
+using namespace std;
+
+string first_last(string fbe, string fki)
+{
+  ifstream fg(fbe);
+  ofstream fw(fki);
+  if(fg.is_open()) {
+   if(fw.is_open()) {
+    int vk, h, k;
+    string vks, ent="\n";
+    fg >> vk; getline(fg,vks);
+    string* szk=new string[vk];
+    for(int i=0; i<vk; i++) {
+     getline(fg,szk[i]); h=szk[i].length();
+     char* kn=new char[h];
+     for(int j=0; j<h; j++) {
+      kn[j]=szk[i][j];
+      if(szk[i][j]==' ') k=j; }
+     kn[k]='\0';
+     char* vn=new char[h-k+3];
+     k++;
+     int j;
+     for(j=0; k<h; j++, k++) { vn[j]=szk[i][k]; }
+     vn[j]=','; vn[j+1]=' ';
+     cout << vn << kn << endl;
+     fw.write(vn,strlen(vn)); fw.write(kn,strlen(kn));
+     fw.write(ent.c_str(),1);
+     for(int j=0; j<h; j++) { kn[j]='\0'; }
+     delete [] kn; kn=0; delete [] vn; vn=0;
+    }
+   delete [] szk; szk=0; 
+   fw.close();
+  }  
+  else return "Háttértár hiba!";
+  fg.close();
+ } 
+ else { return "Sikertelen file-nyitás!"; }
+ return "Hibátlan futás!";
+}
+
+int main(void) {
+   string f_be="Writers.txt", f_ki="Sretirw.txt";
+   cout << first_last(f_be, f_ki) << endl;
+   return 0;
+}
+/***********************************/

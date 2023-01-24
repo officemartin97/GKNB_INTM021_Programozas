@@ -1,0 +1,138 @@
+----------
+1. Feladat
+----------
+Ha egy ágyúból kilövünk egy lövedéket, akkor a szögtől és a kezdősebességtől függően
+ kiszámíthatjuk az ágyúgolyó röptávolságát. Készítsen egy függvényt, ami egy bemenő,
+ radiánban adott theta és v0 kezdősebességtől függően kiszámítja a távolságot. 
+A gravitációs állandót vegye 9.81-nek.
+
+Emlékeztetőül, a távolság számítása: v0^2/g * sin(2*theta)
+
+Készüljön fel, hogy negatív és 180°-nál nagyobb szögek és 0-nál kisebb sebesség esetén ne számítson távolságot, hanem térjen vissza -1 értékkel.
+
+For example:
+Test 								Result
+----								------
+double v = 40;							163.099
+double theta = M_PI/4;
+std::cout << distance_agyugolyo(v, theta) << std::endl;
+
+double distance_agyugolyo(double v0, double theta){
+
+}
+
+----------
+2. Feladat
+----------
+
+Az ASCII art egy grafikai technika, amely számítógépeket használ a prezentációhoz,
+ és olyan képekből áll, amelyeket az ASCII szabvány 1963-ban meghatározott 95 
+nyomtatható (összesen 128) karakteréből és az ASCII-kompatibilis kibővített 
+karakterkészletekből áll. A kifejezést általában lazán használják a szövegalapú 
+vizuális művészetekre is." (Wikipedia)
+
+A feladat elkészíteni azt a void write(string text, string alphabet[LETTERS][ROWS])
+ függvényt, ami kinyomtatja a text szöveget ASCII art stílusban, felhasználva az
+ alphabet ábécét. Az ábécé most csak a 26 angol nagybetű képét tartalmazza, ábécé
+ sorrendben. Az első index kiválasztja a betűt [0-25], a második a kiválasztott
+ betű valamelyik sorát [0-5]. Minden betű 6 sorból áll, de az oszlopok száma eltérő.
+ Az alphabet definíciója pl. az alábbi lehet:
+
+string alphabet[LETTERS][ROWS] = {
+{
+" _____ ",
+" / _ \\ ",
+" / /_\\ \\ ",
+"/ | \\",
+"\\____|__ /",
+" \\/ "
+},
+{
+"__________ ",
+"\\______ \\",
+" | | _/",
+" | | \\",
+" |______ /",
+" \\/ "
+},
+// ...
+{
+"__________",
+"\\____ /",
+" / / ",
+" / /_ ",
+"/_______ \\",
+" \\/"
+}
+};
+
+Az egymást követő betűk közé nyomtasson egy oszlopot szóközökből! A text karakterei 
+közül csak a betűket nyomtassa ki, a többit hagyja figyelmen kívül! Kisbetűk helyett
+ nyomtassa ki azok nagybetűs alakját!
+
+void write(string text, string alphabet[LETTERS][ROWS]){
+
+}
+
+----------
+3. Feladat
+----------
+
+Készítse el az alábbi balra függvényt, melynek feladata, hogy a paraméterként kapott
+ fajl szövegfájl tartalmát max karakter szélességben megjeleníti a szabvány kimeneten,
+ balra igazítva! Nem kell attól tartania, hogy a szövegfájlban max-nál hosszabb 
+szavak lesznek.
+
+Szintaktikai hiba esetén a fordító által jelzett sor számából vonjon ki 10-et, 
+hogy megkapja a szerkesztőben olvasható sorszámot!
+
+----------
+4. Feladat
+----------
+
+Valósítson meg halmaz absztrakt adattípust bináris fa segítségével! A halmazban
+ kulcs-érték párokat kell tárolni, és garantálni kell, hogy minden kulcs legfeljebb
+ egyszer fordulhat elő. Az új kulcs-érték párok beszúrását illetve létező kulcshoz
+ tartozó érték módosítását végző beszur, valamint a fa törlését végző felszabadit
+ függvények már készen vannak. A feladat annak a keres függvénynek az elkészítése,
+ mely a paraméterként kapott p gyökerű fában kikeresi a kulcs kulcsot. Ha talál
+ ilyen kulcsot, akkor a függvény visszatérési értéke true, és a kulcshoz tartozó
+ értéket a referencia típusú ertek paraméterbe írja. Ha a kulcs nem létezik,
+ visszatérési értéke false legyen!
+
+A kulcs-érték pár tárolására szolgáló struktúrát a forrásszöveg elején már
+ definiáltuk a következőképpen:
+
+struct par {
+string kulcs;
+string ertek;
+par* bal;
+par* jobb;
+};
+
+A bináris fa a kulcsok alapján rendezett, azaz a bal oldali gyermek kulcsa mindig
+ előrébb, a jobb oldalié hátrébb van abc sorrendben, mint a szülőé.
+
+----------
+5. Feladat
+----------
+
+Definiálja azt a hasab* beolvas(const string& nev, int& n) függvényt, ami beolvassa
+ a nev nevű szöveges fájl tartalmát! Minden sor egy-egy hasáb magasságát, szélességét
+ és mélységét tartalmazza, egymástól fehér karakterrel elválasztva, nem negatív
+racionális számokkal megadva. A sorok száma előre nem ismert. A hasábok adatait
+ dinamikusan lefoglalt hasab struktúratömbben kell elhelyezni, majd ezt visszatérési
+ értékként szolgáltatni. A tömb elemszámát az n referenciával kell megadni a hívónak.
+
+A struktúra már deklarált a következőképpen:
+
+struct hasab {
+double magassag, szelesseg, melyseg;
+};
+
+Nem létező fájl esetén térjen vissza nullptr-rel, n értékét pedig állítsa 0-ra!
+
+A hasabok1.txt tartalma a következő:
+
+1 2 3
+1.2 3.4 5.6

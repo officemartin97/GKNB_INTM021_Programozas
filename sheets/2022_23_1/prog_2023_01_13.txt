@@ -1,0 +1,12 @@
+Programozás | 2023.01.13.
+-------------------------
+
+1. Definiálja azt az int* range(int from, int to, int step, int& size) függvényt, ami visszaadja annak a dinamikusan foglalt tömbnek a címét, amely a [from, to) intervallumba eső egészeket tárol. Az egészek számtani sorozatot alkotnak, és a szomszédos elemek különbsége step. size-ban szolgáltassa a függvény a tömb elemszámát!
+
+2. Készítse el azt a void sinText(int height, std::string text) függvényt, ami a paraméterként kapott text szöveget egy szinuszgörbére illesztve írja ki a szabványos kimenetre! A kiírás egy height magasságú és text hosszával megegyező szélességű, téglalap alakú területen belül történjen! Az egymást követő betűk között 0,15 radián szögelfordulás legyen!
+
+3. Készítse el azt a void permutation(const string& chars, int len) függvényt, ami a chars karakterlánc karaktereiből képezhető összes len hosszúságú permutációt előállítja és megjeleníti a kimeneten!
+
+4: Készítse el azt a numList* createAscList(double* arr, int n) függvényt, ami a paraméterként adott n elemű arr tömb elemeiből egy irányban láncolt listát állít elő oly módon, hogy a lista minden eleme a tömb egy-egy értékét tárolja, melyek a listában növekvő sorrendben kerülnek elhelyezésre! A visszatérési érték a rendezett lista első elemének (horgonyának) címe legyen!
+
+5. Definiálja azt a bool egyseg(const int** mtx, int n) függvényt, ami logikai igaz értéket ad vissza, ha az nxn méretű mtx mátrix egységmátrix! Egy négyzetes mátrix akkor egységmátrix, ha főátlójának (bal felső és jobb alsó sarkot összekötő szakasz mentén) minden eleme 1 értékű, a többi pedig 0.

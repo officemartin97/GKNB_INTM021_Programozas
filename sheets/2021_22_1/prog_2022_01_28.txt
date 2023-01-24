@@ -1,0 +1,124 @@
+1. feladat:
+
+Készítse el azt a void okta(const string& fname) függvényt, ami megjeleníti a paraméterként adott nevű fájlban található oldalhosszakat és az ilyen oldalhosszúságú oktaéderek térfogatát! A térfogat a következő összefüggéssel számolható ki: V=a332–√, ahol a az oldalhossz. Minden oldalhossz külön szövegsorban helyezkedik el, racionális számként. A megjelenítés 3 tizedesjegy pontossággal történjen!
+
+For example:
+
+Test Result
+
+okta("okta1.txt");
+4.587 45.499
+5.115 63.093
+4.074 31.870
+4.820 52.797
+7.763 220.513
+6.715 142.719
+8.355 274.962
+4.427 40.896
+6.477 128.074
+9.504 404.691
+
+
+=====================================================================
+
+
+
+2. feladat:
+
+Írjon egy olyan programot C++ nyelven, ami beolvas egy szót, és kiírja a szó Scrabble pontértékét.
+
+A szó Scrabble pontértéke a benn lévő betűk pontszámainak összege. A betűk pontszámai a következők:
+
+A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z
+1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10
+
+Pl.: baba = 3 + 1 + 3 + 1 = 8
+
+A program a standard bemenetről olvassa be a szót! A szó whitespace-eken kívül tetszőleges karaktereket tartalmazhat. A nem betű karakterek pontszáma 0, a kis- és nagybetűk között ne tegyen különbséget!
+
+For example:
+
+Input 	Result
+Baba	8
+az	11
+A-Z	11
+
+
+
+
+
+=====================================================================
+
+3. feladat
+
+Az egyetemi féléveket röviden egy ÉÉÉÉ/ÉÉ/F alakú karakterlánccal szokták megadni, ahol ÉÉÉÉ egy évszám, ÉÉ a következő naptári év utolsó két számjegye, F pedig 1, ha őszi, és 2, ha tavaszi félévről van szó.
+
+Fejezze be az alábbi felev függvényt, amely eldönti a paraméter karakterláncról, hogy formailag és tartalmilag helyes-e, és ha igen, azt true, ha nem, azt false visszatérési értékkel jelzi!
+
+Ha a fordító szintaktikai hibát jelez a forráskód valamelyik sorában, akkor abból 10-et kivonva kapja meg a szerkesztőben olvasható sorszámot.
+
+For example:
+
+Test 								Result
+cout << (felev("2019/20/2")?"Helyes":"Hibas") << endl;		Helyes
+cout << (felev("1999/00/1")?"Helyes":"Hibas") << endl;		Helyes
+cout << (felev("2000/00/1")?"Helyes":"Hibas") << endl;		Hibas
+
+
+
+=====================================================================
+
+
+4. feladat
+
+dott a következő struktúra:
+
+struct elem {
+string szoveg;
+elem* alpontok;
+elem* kov;
+};
+Ezzel egy többszintű lista (nem számozott felsorolás) elemeit lehet tárolni. A szoveg adja meg az aktuális felsorolt elem szövegét, kov pedig a következő felsorolt elem helyét a tárban (ami NULL értékű, ha nincs több elem). A felsorolás elemei egy irányban láncolt listát alkotnak. Az alpontok az aktuális elem alatti szinten lévő első felsorolt elemet jelöli ki, azaz egy beágyazott láncolt lista elejét.
+
+Definiálja azt a void nyomtat(const elem* horgony, int szint = 0) függvényt, ami kinyomtatja a teljes felsorolást, ha a legkülső lista horgonypontjával hívják meg. Rekurzívan hívnia kell önmagát, amennyiben az aktuális elemnek alpontjai vannak, melyek szint-je mindig eggyel nagyobb az aktuálishoz képest. A felsorolt elemek elé nyomtasson ki annyi szóközt, mint a szint értékének kétszerese (ez igazítja az elemeket), majd egy kötőjelet és egy szóközt is az elem szövege elé!
+
+For example:
+
+Test 
+elem* horgony = NULL;
+beszur(horgony, "Harom");
+elem* ketto = beszur(horgony, "Ketto");
+beszur(ketto->alpontok, "Ketto.Harom");
+beszur(ketto->alpontok, "Ketto.Ketto");
+beszur(ketto->alpontok, "Ketto.Egy");
+beszur(horgony, "Egy");
+nyomtat(horgony);
+felszabadit(horgony);
+
+Result
+- Egy
+- Ketto
+- Ketto.Egy
+- Ketto.Ketto
+- Ketto.Harom
+- Harom
+
+
+
+=====================================================================
+
+
+5. feladat
+
+
+Készítse el az alábbi függvényt, ami paraméterként kap 3 pozitív egész számot: h, w és t; és kiír egy h karakter magasságú, w karakter szélességű, t karakter vonalvastagságú, # karakterekből álló téglalapot! (Feltételezhető, hogy t
+For example:
+
+Test Result
+draw_rectangle(6, 7, 2);
+#######
+#######
+##   ##
+##   ##
+#######
+#######
